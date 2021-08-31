@@ -140,7 +140,7 @@ const updateER = () => {
         [answer.roleId, answer.id],
         function (err) {
           if (err) throw err;
-          console.log('Employee updated!');
+          console.log(chalk.blue.bgRed.bold('Employee updated!'));
           employeeMenu();
         }
       );
@@ -180,7 +180,7 @@ const addRole = () => {
         [answer.titleRole, answer.salary, answer.deptId],
         function (err, res) {
           if (err) throw err;
-          console.log('Role added!');
+          console.log(chalk.blue.bgRed.bold('Role added!'));
           employeeMenu();
         }
       );
@@ -209,7 +209,7 @@ const addDepartment = () => {
         [answer.department],
         function (err, res) {
           if (err) throw err;
-          console.log('Department added!');
+          console.log(chalk.blue.bgRed.bold('Department added!'));
           employeeMenu();
         }
       );
