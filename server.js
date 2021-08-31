@@ -68,6 +68,18 @@ const connection = mysql.createConnection({
       });
   };
 
+const viewAllEmployees = () => {
+  connection.query(
+    'SELECT employee.id, first_name, last_name, title, salary, dept_name, manager_id FROM ((department JOIN roles ON department.id = roles.department_id) JOIN employee ON roles.id = employee.role_id);',
+    function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      employeeMenu();
+    }
+  );
+};
+
+
 figlet('EMPLOYEE TRACKER', function(err, data) {
     if (err) {
         console.log('Something went wrong...');

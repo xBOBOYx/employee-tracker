@@ -3,7 +3,7 @@ CREATE DATABASE employee_db;
 USE employee_db;
 
 DROP TABLE IF EXISTS department;
-DROP TABLE IF EXISTS job;
+DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS employee;
 
 CREATE TABLE department (
@@ -11,7 +11,7 @@ CREATE TABLE department (
   dept_name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE job (
+CREATE TABLE roles (
   id INT PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(30) NOT NULL,
   salary DECIMAL NOT NULL,
