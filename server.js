@@ -16,9 +16,57 @@ const connection = mysql.createConnection({
 
   connection.connect(err => {
     if (err) throw err;
-    console.log(chalk.blue("You are now connected to the employee database"));
-    
+    console.log(chalk.blue.underline.bold("You are now connected to the employee database"));
+    employeeMenu();
   });
+
+  const employeeMenu = () => {
+    inquirer.prompt({
+        message: 'What would you like to do today?',
+        name: 'menu',
+        type: 'list',
+        choices: [ 
+          'View all Employees',
+          'Add Employee',
+          'Update Employee Role',
+          'View All Roles',
+          'Add Role',
+          'View All Departments',
+          'Add Department',
+          'Exit',
+        ],
+      })
+      .then(response => {
+          switch (response.menu) {
+          case 'View all Employees':
+            viewAllEmployees();
+            break;
+          case 'Add Employee':
+            addEmployee();
+            break;
+          case 'Update Employee Role':
+            updateER();
+            break;
+          case 'View All Roles':
+            viewAllRoles();
+            break;
+          case 'Add Role':
+            addRole();
+            break;
+          case 'View All Departments':
+            addAD();
+            break;
+          case 'Add Department':
+            addDepartmen();
+            break;
+          case "Exit":
+            connection.end();
+            break;
+          default:
+            connection.end();
+        }
+      });
+  };
 
 figlet('EMPLOYEE TRACKER', function(err, data) {
     if (err) {
