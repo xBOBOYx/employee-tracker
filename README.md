@@ -42,7 +42,7 @@ This project is covered under MIT
 - Add new roles
 - Update employee roles
 
-![pic](Assets/employeeTracker.png)
+![pic](assets/employeeTracker.png)
 
 ## <ins>Contributions
 
