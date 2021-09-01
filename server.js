@@ -10,6 +10,16 @@ const chalk = require('chalk');
 
 require('dotenv').config()
 
+// ASCII Art from text
+figlet('EMPLOYEE TRACKER', function (err, data) {
+  if (err) {
+    console.log(chalk.rgb(123, 45, 67).underline('Something went wrong...'));
+    console.dir(err);
+    return;
+  }
+  console.log(data)
+});
+
 // connection to database
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -112,7 +122,7 @@ const addEmployee = () => {
       connection.query(
         'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)',
         [answer.firstName, answer.lastName, answer.roleId, answer.managerId],
-        function (err) {
+        function (err, res) {
           if (err) throw err;
           console.log(chalk.blue.bgRed.bold('Employee added!'));
           employeeMenu();
@@ -138,7 +148,7 @@ const updateER = () => {
       connection.query(
         'UPDATE employee SET role_id=? WHERE id=?',
         [answer.roleId, answer.id],
-        function (err) {
+        function (err, res) {
           if (err) throw err;
           console.log(chalk.blue.bgRed.bold('Employee updated!'));
           employeeMenu();
@@ -216,12 +226,3 @@ const addDepartment = () => {
     });
 };
 
-// ASCII Art from text
-figlet('EMPLOYEE TRACKER', function (err, data) {
-  if (err) {
-    console.log(chalk.rgb(123, 45, 67).underline('Something went wrong...'));
-    console.dir(err);
-    return;
-  }
-  console.log(data)
-});
